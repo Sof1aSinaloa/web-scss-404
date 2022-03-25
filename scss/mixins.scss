@@ -1,0 +1,72 @@
+//MIXIN 
+@mixin reset-pm{
+    padding: 0;
+    margin: 0;
+}
+
+@mixin clearFix {
+    &::after {
+        content:"";
+        display: block;
+        clear: both;
+    }
+}
+
+@mixin btn($background-color, $color, $bold){
+    background-color: $background-color;
+    color: $color;
+    border-radius: 50px;
+    padding: 20px 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    @if($bold == 'true'){
+        font-weight: bolder;
+    }
+}
+
+@mixin banner{
+    position: relative;
+    color: white;
+
+    .banner-contenido {
+        position: absolute;
+        top: 50px;
+        width: 100%;
+    }
+
+    .imagen-superiordos{
+        position: static;
+        width: auto;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+@mixin grid($cols, $mgn) {
+    float: left;
+    width: ((100% - (($cols - 1) * $mgn)) / $cols);
+    margin-right: $mgn;
+    margin-bottom: $mgn;
+    &:nth-child(#{$cols}n) {
+        margin-right: 0;
+    }
+}
+
+@mixin mediaQ($args...) {
+    @if length($args) == 1 {
+        @media screen and (max-width: nth($args,1)) {
+            @content;
+        }
+    }
+
+    @if length($args) == 2 {
+        @media screen and (max-width: nth($args,1)) and (min-width: nth($args,2)) {
+            @content;
+        }
+    }
+}

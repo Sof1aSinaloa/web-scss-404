@@ -1,0 +1,85 @@
+@import "reset";
+@import "variables";
+@import "mixins";
+
+
+
+.banner-superior {
+    @include banner;
+    text-align: right;
+}
+.imagen-superior {
+    @include banner;
+    text-align: left;
+}
+
+//FUNCIONES
+@function tamaño-letra-funcion($numerico){
+    @return $numerico * $unidad;
+}
+
+//ESTILOS VARIABLES
+.btn{
+    &.btn-cta{
+        @include btn($color-base, $color-negro, 'true');
+        &:hover{
+            @include btn($color-menu, $color-blanco, 'true');
+            box-shadow: $box-shadow;
+        }
+    }
+
+    &:hover{
+        @include btn($color-blanco,$color-negro, 'true');
+        box-shadow: $box-shadow;
+    }
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    .col{
+        width: 50%;
+    }
+
+    .col-10{
+        width: 10%;
+    }
+    .col-20{
+        width: 20%;
+    }
+
+    .col-30{
+        width: 30%;
+    }
+
+    .col-70{
+        width: 70%;
+    }   
+}
+
+.m-auto{
+    margin: 0 auto; 
+}
+
+
+//INTERACIONES POR ESTILOS
+@for $i from 1 to $limit{
+    .m-#{$i}{
+        margin: $i * $unidad;
+    }
+
+    .p-#{$i}{
+        padding: $i * $unidad;
+    }
+
+    .py-#{$i}{
+        padding: $i * $unidad 0;
+    }
+}
+
+@for $i from 1 to 4{
+    .w-#{$i}{
+        width: $i * 25%;
+    }
+}
+
